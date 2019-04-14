@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require "public_module.php";
 
 /*$mysql_server_name='localhost'; //改成自己的mysql数据库服务器
@@ -26,3 +27,15 @@ while ($tmp=$result->fetch_assoc())
 $sql = 'select * from biao';
 var_dump(select($sql));
 
+=======
+
+require "public_module.php";
+
+$sql = "INSERT INTO biao (`name`) values ('newname')";
+// $sql = "SELECT * from biao";
+
+// $con = mysqli_connect("localhost", "root", "root");
+// mysqli_select_db("test", $con);
+
+query($sql);
+>>>>>>> 7db7a4967f8adffa01ee200c6dca20b3af8795c8

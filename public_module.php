@@ -384,6 +384,8 @@
 			echo "<REASON>";
 			if ($err != "")
 				echo $err . ' ';
+			else if ($err == 0)
+				echo mysqli_error($con);
 			echo '<MYSQ_EOORO:>' . mysql_error();
 			echo "</REASON>";
 			die;
@@ -437,10 +439,11 @@
 		$data=array();
 		if ($VERSION_MYSQL === 1)
 		{
-			while ($_tmp=$result->fetch_assoc())
+			/*while ($_tmp=$result->fetch_assoc())
 			{
 			    $data[]=$_tmp;
-			}
+			}*/
+			$data = $result->fetch_all();
 		}
 		else if ($VERSION_MYSQL === 2)
 		{

@@ -15,9 +15,9 @@ $require = seize('require');
 $contact = seize('contact');
 $linkman = seize('linkman');
 
-$sql = "INSERT INTO parttimes (user_id,brief,wage,require,contact,linkman) values ('$user_id', '$type', '$brief', '$wage', '$require', '$contact', '$linkman')";
-$result = query($sql);
-if (!result)
-	echo mysql_error();
+$sql = "INSERT INTO parttimes (user_id,type,brief,wage,`require`,contact,linkman) values ('$user_id', '$type', '$brief', '$wage', '$require', '$contact', '$linkman')";
+$result = query2($sql, 0);
 
-var_dump($result);
+echo "Ìí¼Ó³É¹¦";
+
+

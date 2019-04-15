@@ -37,15 +37,17 @@ if (!isset($_SESSION['user_id'])) {
 
 		<form action="publish_insert.php">
 			<!-- 类型 -->
+			<div style="margin-left: 20px;">
 				<div class="mdui-chip">
 				    <span class="mdui-chip-title">兼职类型</span>
 				</div>
-			    <label class="mdui-radio" style="margin-right: 20px;">
-			        <input type="radio" name="group1" checked /><i class="mdui-radio-icon"></i>默认
+			    <label class="mdui-radio" style="margin-left: 20px;">
+			        <input type="radio" name="type" value="1" checked /><i class="mdui-radio-icon"></i>默认
 			    </label>
+			</div>
 
 			<!-- 标题 -->
-			<div class="mdui-card-content" style="margin-bottom: -20;">
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label" >
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">标题</label>
 			        <input class="mdui-textfield-input" type="text" name="title"/>
@@ -53,7 +55,7 @@ if (!isset($_SESSION['user_id'])) {
 			</div>
 
 			<!-- 简介 -->
-			<div class="mdui-card-content">
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">简介</label>
 			        <input class="mdui-textfield-input" type="text" name="brief"/>
@@ -61,21 +63,43 @@ if (!isset($_SESSION['user_id'])) {
 			</div>
 
 			<!-- 时薪 -->
-			<div class="mdui-card-content">
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">时薪</label>
 			        <input class="mdui-textfield-input" type="number" name="wage" />
 			    </div>
 			</div>
 
+			<!-- 要求 -->
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
+			    <div class="mdui-textfield mdui-textfield-floating-label">
+			        <label class="mdui-textfield-label" style="margin-top:-20px;">要求</label>
+			        <input class="mdui-textfield-input" type="number" name="require" />
+			    </div>
+			</div>
+
+			<!-- 联系方式 -->
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
+			    <div class="mdui-textfield mdui-textfield-floating-label">
+			        <label class="mdui-textfield-label" style="margin-top:-20px;">联系方式</label>
+			        <input class="mdui-textfield-input" type="number" name="contact" />
+			    </div>
+			</div>
+
+			<!-- 联系人 -->
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
+			    <div class="mdui-textfield mdui-textfield-floating-label">
+			        <label class="mdui-textfield-label" style="margin-top:-20px;">联系人</label>
+			        <input class="mdui-textfield-input" type="number" name="linkman" />
+			    </div>
+			</div>
+
 			<!-- 卡片的按钮 -->
 			<div class="mdui-card-actions">
-			    <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">注册</button>
+			    <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">发布</button>
 			</div>
 
 		</form>
-
-		
 
 	</div>
 </body>

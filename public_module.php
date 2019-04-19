@@ -439,11 +439,11 @@
 		$data=array();
 		if ($VERSION_MYSQL === 1)
 		{
-			/*while ($_tmp=$result->fetch_assoc())
+			while ($_tmp=$result->fetch_assoc())
 			{
 			    $data[]=$_tmp;
-			}*/
-			$data = $result->fetch_all();
+			}
+			// $data = $result->fetch_all(); // 这个返回的是数组下标，每列下标都是整数型
 		}
 		else if ($VERSION_MYSQL === 2)
 		{

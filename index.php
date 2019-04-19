@@ -125,7 +125,10 @@ function initUser($user_id = 1)
         		for ($i=0; $i < $size; $i++) {
         			$name = $_SESSION['username'];
         			$head_url = '';
-        			// $title = $result[$i]['title'];
+        			$title = $result[$i]['title'];
+        			$brief = $result[$i]['brief'];
+        			$wage = $result[$i]['wage'];
+        			$create_time = $result[$i]['create_time'];
 
         	?>
         	<!-- 循环输出这一整个标签内容 -->

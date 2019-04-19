@@ -120,7 +120,12 @@ function initUser($user_id = 1)
         	<?php
         		$sql = "SELECT * FROM parttimes order by create_time desc";
         		$result = select($sql);
-        		var_dump($result);
+
+        		$size = count($result);
+        		for ($i=0; $i < $size; $i++) {
+        			$name = $_SESSION['username'];
+        			$head_url = '';
+        			// $title = $result[$i]['title'];
 
         	?>
         	<!-- 循环输出这一整个标签内容 -->
@@ -162,7 +167,7 @@ function initUser($user_id = 1)
                 </div>
             </li>
             <?php
-
+        		}
             ?>
         </ul>
     </div>

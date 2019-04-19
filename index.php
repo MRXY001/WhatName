@@ -117,6 +117,13 @@ function initUser($user_id = 1)
 <div id="main">
     <div id="list">
         <ul>
+        	<?php
+        		$sql = "SELECT * FROM parttimes order by create_time desc";
+        		$result = select($sql);
+        		var_dump($result);
+
+        	?>
+        	<!-- 循环输出这一整个标签内容 -->
             <li>
                 <!-- 头像部分 -->
                 <div class="po-avt-wrap">
@@ -154,6 +161,9 @@ function initUser($user_id = 1)
                     </div>
                 </div>
             </li>
+            <?php
+
+            ?>
         </ul>
     </div>
 

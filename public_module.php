@@ -435,7 +435,7 @@
 			$result = mysqli_query($con, $sql);
 		else
 			$result = mysql_query($sql);
-
+		// !如果查询出错，$result会返回 none
 		$data=array();
 		if ($VERSION_MYSQL === 1)
 		{

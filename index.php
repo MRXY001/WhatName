@@ -154,13 +154,11 @@ function initUser($user_id = 1)
                             </p>
                         </div>
                         <!-- 发布时间 -->
-                        <p class="time"><?php echo $readability_time; ?></p><img class="c-icon" src="wx_img/c.png">
+                        <p class="time"><?php echo $readability_time; ?></p><!-- <img class="c-icon" src="wx_img/c.png"> -->
                     </div>
-                    <!-- 用户评论 -->
-                    <div class="cmt-wrap">
-                        <!-- 点赞列表 -->
+                    <!-- 用户评论：点赞列表、评论列表 -->
+                    <!-- <div class="cmt-wrap">
                         <div class="like"><img src="wx_img/l.png">苍井空，陈冠希，杨幂，王思聪，陈赫，刘德华，马云...</div>
-                        <!-- 评论列表 -->
                         <div class="cmt-list">
                             <p><span>王思聪：</span>去哪玩啊？那么爽</p>
                             <p>
@@ -168,7 +166,7 @@ function initUser($user_id = 1)
                                 澳洲大堡礁，这边刚好是夏季，挺适合避寒的。
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </li>
             <?php

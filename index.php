@@ -124,14 +124,16 @@ function initUser($user_id = 1)
         		$size = count($result);
         		for ($i=0; $i < $size; $i++) {
         			$head_url = '';
-        			$user_id = $result[$i]['user_id'];
+        			$row = $result[$i];
+        			$user_id = $row['user_id'];
         			$username = getUsernameById($user_id);
-        			$title = $result[$i]['title'];
-        			$brief = $result[$i]['brief'];
-        			$wage = $result[$i]['wage'];
-        			$create_time = $result[$i]['create_time'];
+        			$parttime_id = $row['parttime_id'];
+        			$title = $row['title'];
+        			$brief = $row['brief'];
+        			$wage = $row['wage'];
+        			$create_time = $row['create_time'];
         			$readability_time = time2Readability($create_time);
-
+        			$photo_count = $row['photos'];
         	?>
         	<!-- 循环输出这一整个标签内容 -->
             <li>
@@ -147,11 +149,17 @@ function initUser($user_id = 1)
                         <!-- 发布内容 -->
                         <div class="post">
                             <p><?php echo $brief; ?></p>
-                            <p>
-                                <img class="list-img" src="wx_img/jt1.jpg" style="height: 80px;">
-                                <img class="list-img" src="wx_img/yt3.jpg" style="height: 80px;">
-                                <img class="list-img data-avt" src="wx_img/0.jpg" style="height: 80px;">
-                            </p>
+                        	<?php
+                        		if ($photo_count > 0)
+                        		{
+                        			echo "<p>";
+                        			for ($j=0; $j < $photo_count; $j++) {
+                        				$path = "pphotos/" . $parttime_id . '_' . ($j+1) . '.jpg';
+                        				echo "<img class='list-img' src='$path' style='height: 80px;'>";
+                        			}
+                        			echo "</p>";
+                        		}
+                        	?>
                         </div>
                         <!-- 发布时间 -->
                         <p class="time"><?php echo $readability_time; ?></p><!-- <img class="c-icon" src="wx_img/c.png"> -->

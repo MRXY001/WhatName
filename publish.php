@@ -70,6 +70,14 @@ if (!isset($_SESSION['user_id'])) {
 			    </div>
 			</div>
 
+			<!-- 时薪 -->
+			<div class="mdui-card-content" style="margin-bottom: -25px;">
+			    <div class="mdui-chip">
+				    <span class="mdui-chip-title">图片</span>
+				</div>
+				<input type="file" name="photo1" id="phpto1">
+			</div>
+
 			<!-- 联系方式 -->
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
@@ -81,7 +89,7 @@ if (!isset($_SESSION['user_id'])) {
 			<!-- 联系人 -->
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
-			        <label class="mdui-textfield-label" style="margin-top:-20px;">联系人</label>
+			        <label class="mdui-textfield-label" style="margin-top:-20px;">所属单位</label>
 			        <input class="mdui-textfield-input" type="number" name="linkman" id="linkman" />
 			    </div>
 			</div>

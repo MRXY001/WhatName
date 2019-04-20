@@ -123,12 +123,14 @@ function initUser($user_id = 1)
 
         		$size = count($result);
         		for ($i=0; $i < $size; $i++) {
-        			$name = $_SESSION['username'];
         			$head_url = '';
+        			$user_id = $result[$i]['user_id'];
+        			$username = getUsernameById($user_id);
         			$title = $result[$i]['title'];
         			$brief = $result[$i]['brief'];
         			$wage = $result[$i]['wage'];
         			$create_time = $result[$i]['create_time'];
+        			$readability_time = time2Readability($create_time);
 
         	?>
         	<!-- 循环输出这一整个标签内容 -->
@@ -141,10 +143,10 @@ function initUser($user_id = 1)
                     <!-- 朋友圈内容 -->
                     <div class="po-hd">
                         <!-- 发朋友圈的用户名字 -->
-                        <p class="po-name"><span class="data-name">万虎科技~贾素杰</span></p>
+                        <p class="po-name"><span class="data-name"><?php echo $title; ?></span></p>
                         <!-- 发布内容 -->
                         <div class="post">
-                            <p>大家好，听说国内冻成狗🐶？我这边还挺热～</p>
+                            <p><?php echo $brief; ?></p>
                             <p>
                                 <img class="list-img" src="wx_img/jt1.jpg" style="height: 80px;">
                                 <img class="list-img" src="wx_img/yt3.jpg" style="height: 80px;">
@@ -152,7 +154,7 @@ function initUser($user_id = 1)
                             </p>
                         </div>
                         <!-- 发布时间 -->
-                        <p class="time">刚刚</p><img class="c-icon" src="wx_img/c.png">
+                        <p class="time"><?php echo $readability_time; ?></p><img class="c-icon" src="wx_img/c.png">
                     </div>
                     <!-- 用户评论 -->
                     <div class="cmt-wrap">
@@ -171,6 +173,7 @@ function initUser($user_id = 1)
             </li>
             <?php
         		}
+
             ?>
         </ul>
     </div>
@@ -203,8 +206,92 @@ function initUser($user_id = 1)
     $(document.body).show();
 
 </script>
-
-
-
 </body>
 </html>
+
+<?php
+function getUsernameById($user_id)
+{
+	$sql = "SELECT * from users where user_id = '$user_id'";
+	$row = row($sql);
+	if ($row)
+		return $row['username'];
+	return '';
+}
+
+/**
+* 时间转换易度性的文字
+*
+* @author   technofiend<2281551151@qq.com>
+*/
+function time2Readability($time, $contrastTime = 0)
+{
+	date_default_timezone_set('PRC'); // 临时设置成中国时区
+
+    if ($contrastTime <= 0) {
+        $contrastTime = time();
+    }
+
+    if ($time <= 0) {
+        return '未知';
+    }
+
+    // 非今年发布的时间
+    if (date('Y', $time) != date('Y', $contrastTime)) {
+        return date('Y-m-d H:i:s', $time);
+    }
+
+    // 发布时间的零点
+    $dateTime1  = new \DateTime();
+    $dateTime1->setTimestamp($time);
+    $dateTime1->setTime(0, 0, 0);
+    $time1      = $dateTime1->getTimestamp();
+
+    // 今天的零点
+    $todayObj   = new \DateTime();
+    $todayObj->setTimestamp($contrastTime);
+    $todayObj->setTime(0, 0, 0);
+    $today      = $todayObj->getTimestamp();
+
+    // 距离发表时间的秒数
+    $elapseTime = $contrastTime - $time;
+
+    // 发表时间等于今天
+    if ($time1 == $today) {
+        // 今天发表的
+        if ($elapseTime <= 5 * 60) {
+            // 5分钟内
+            return '刚刚';
+        } else if ($elapseTime <= 60 * 60) {
+            // 一个钟头内
+            return floor($elapseTime / 60) . ' 分钟前';
+        } else {
+            return floor($elapseTime / (60 * 60)) . ' 小时前';
+        }
+    }
+
+    $dateTime3 = new \DateTime();
+    $dateTime3->setTimestamp($contrastTime);
+    $dateTime3->modify('-1 day');
+    $dateTime3->setTime(0, 0, 0);
+    $yesterday = $dateTime3->getTimestamp();
+
+    // 发表时间等于昨天
+    if ($time1 == $yesterday) {
+        if (($contrastTime - 6 * 60 * 60) < $today) {
+            // 如果当前时间是凌晨
+            $hourBefore = floor($elapseTime / (60 * 60));
+            if ($hourBefore <= 9) {
+                return $hourBefore . ' 小时前';
+            } else {
+                return '昨天：' . date('H:i', $time);
+            }
+        } else {
+            return '昨天：' . date('H:i', $time);
+        }
+    }
+
+    return date('m-d H:i:s', $time);
+}
+
+?>

@@ -49,8 +49,10 @@ else
 	$p = NULL;
 }
 // 插入到数据库中
-$sql = "INSERT INTO parttimes (user_id,type,title,brief,wage,photos,`require`,contact,linkman,create_time) values ('$user_id', '$type', '$title', '$brief', '$wage', 'photos','$require', '$contact', '$linkman', '$time')";
+$sql = "INSERT INTO parttimes (user_id,type,title,brief,wage,photos,`require`,contact,linkman,create_time) values ('$user_id', '$type', '$title', '$brief', '$wage', '$photo_count','$require', '$contact', '$linkman', '$time')";
 $result = query2($sql, 0);
+
+echo "publish success!";
 
 // 照片格式：pphotos/parttime_id.postfix
 if ($p != NULL)

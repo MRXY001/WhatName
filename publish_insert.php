@@ -26,10 +26,6 @@ if ($title == '' || $brief == '')
 
 // 获取图片信息（不一定有，数量也不确定）
 $photo_count = 0;
-if (isset($_FILES['photo1']))
-{
-	echo "p1";
-}
 if (isset($_FILES['photo1']) && is_uploaded_file($_FILES['photo1']['tmp_name']))
 {
 	$photo_count++;
@@ -56,9 +52,6 @@ else
 $sql = "INSERT INTO parttimes (user_id,type,title,brief,wage,photos,`require`,contact,linkman,create_time) values ('$user_id', '$type', '$title', '$brief', '$wage', 'photos','$require', '$contact', '$linkman', '$time')";
 $result = query2($sql, 0);
 
-echo "add success";
-
-
 // 照片格式：pphotos/parttime_id.postfix
 if ($p != NULL)
 {
@@ -67,10 +60,4 @@ if ($p != NULL)
 	$parttime_id = $row['parttime_id'];
 	$p_new = $parttime_id . '_' . '1';
 	move_uploaded_file($p_tmp, 'pphotos/' . $p_new . '.jpg');
-
-	echo $p_tmp;
-}
-else
-{
-	echo "asdasdasd";
 }

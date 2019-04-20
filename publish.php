@@ -66,7 +66,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">要求</label>
-			        <input class="mdui-textfield-input" type="number" name="require" id="require" />
+			        <input class="mdui-textfield-input" type="text" name="require" id="require" />
 			    </div>
 			</div>
 
@@ -82,7 +82,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">联系方式</label>
-			        <input class="mdui-textfield-input" type="number" name="contact" id="contact" />
+			        <input class="mdui-textfield-input" type="text" name="contact" id="contact" />
 			    </div>
 			</div>
 
@@ -90,7 +90,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">所属单位</label>
-			        <input class="mdui-textfield-input" type="number" name="linkman" id="linkman" />
+			        <input class="mdui-textfield-input" type="text" name="linkman" id="linkman" />
 			    </div>
 			</div>
 

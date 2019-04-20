@@ -101,6 +101,16 @@ function initUser($user_id = 1)
             background-color: #FFFFFF;
         }
 
+		/*圆形头型*/
+		.round_icon{
+			width: 34px;
+			height: 34px;
+			display: flex;
+			border-radius: 50%;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
     </style>
 </head>
 <body>
@@ -111,7 +121,7 @@ function initUser($user_id = 1)
 <!-- 整个朋友圈的头像（用户信息） -->
 <header>
     <img id="bg" src="wx_img/bg.jpg">
-    <p id="user-name" class="data-name">万虎科技~贾素杰</p>
+    <p id="user-name" class="data-name">兼职信息</p>
     <img id="avt" class="data-avt" src="wx_img/0.jpg">
 </header>
 <div id="main">
@@ -131,15 +141,22 @@ function initUser($user_id = 1)
         			$title = $row['title'];
         			$brief = $row['brief'];
         			$wage = $row['wage'];
+        			$require = $row['require'];
+        			$contact = $row['contact'];
         			$create_time = $row['create_time'];
         			$readability_time = time2Readability($create_time);
         			$photo_count = $row['photos'];
+
+        			$content = $brief . '<br />' . '时薪：' . $wage;
+        			if ($require != NULL && $require != '')
+        				$content = $content . '<br />' . '要求：' . $require;
+        			$content =$content . '<br />' . '联系方式：' . $contact;
         	?>
         	<!-- 循环输出这一整个标签内容 -->
             <li>
                 <!-- 头像部分 -->
                 <div class="po-avt-wrap">
-                    <img class="po-avt data-avt" src="wx_img/0.jpg">
+                    <img class="po-avt data-avt round_icon" src="wx_img/0.jpg">
                 </div>
                 <div class="po-cmt">
                     <!-- 朋友圈内容 -->
@@ -148,7 +165,7 @@ function initUser($user_id = 1)
                         <p class="po-name"><span class="data-name"><?php echo $title; ?></span></p>
                         <!-- 发布内容 -->
                         <div class="post">
-                            <p><?php echo $brief; ?></p>
+                            <p><?php echo $content; ?></p>
                         	<?php
                         		if ($photo_count > 0)
                         		{
@@ -179,7 +196,6 @@ function initUser($user_id = 1)
             </li>
             <?php
         		}
-
             ?>
         </ul>
     </div>

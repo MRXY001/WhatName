@@ -21,6 +21,7 @@ CREATE TABLE `parttimes` (
 	`type` varchar(255) DEFAULT 0 COMMENT '类型',
 	`title` varchar(255) NOT NULL COMMENT '标题',
 	`brief` varchar(255) NOT NULL COMMENT '简介',
+	`photos` int(11) DEFAULT 0 COMMENT '照片数量',
 	`wage` int(11) NOT NULL COMMENT '时薪',
 	`require` varchar(255) COMMENT '要求',
 	`contact` varchar(255) NOT NULL COMMENT '联系方式(手机)',

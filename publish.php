@@ -13,9 +13,10 @@ if (!isset($_SESSION['user_id'])) {
 	<title>发布兼职信息</title>
 	<link rel="stylesheet" href="css/mdui.min.css">
 	<script src="js/mdui.min.js"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
 </head>
-<body style="width:350px;margin:0 auto;margin-top: 100px;">
-	<div class="mdui-card">
+<body>  <!-- style="width:450px;margin:0 auto;margin-top: 100px;" -->
+	<div class="mdui-card" style="margin: 10px;">
 		<!-- 卡片头部，包含头像、标题、副标题 -->
 		<div class="mdui-card-header">
 			<img class="mdui-card-header-avatar" src="img/avatar.jpg"/>
@@ -26,16 +27,7 @@ if (!isset($_SESSION['user_id'])) {
 			 echo time2Readability($create); ?></div>
 		</div>
 
-		<!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
-		<div class="mdui-card-media">
-			<img src="img/card.jpg"/>
-			<!-- 卡片中可以包含一个或多个菜单按钮 -->
-			<div class="mdui-card-menu">
-				<button class="mdui-btn mdui-btn-icon mdui-text-color-white"><i class="mdui-icon material-icons">share</i></button>
-			</div>
-		</div>
-
-		<form action="publish_insert.php">
+		<form action="publish_insert.php" onsubmit="return onSubmit()">
 			<!-- 类型 -->
 			<div style="margin-left: 20px;">
 				<div class="mdui-chip">
@@ -50,7 +42,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label" >
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">标题</label>
-			        <input class="mdui-textfield-input" type="text" name="title"/>
+			        <input class="mdui-textfield-input" type="text" name="title" id="title" />
 			    </div>
 			</div>
 
@@ -58,7 +50,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">简介</label>
-			        <input class="mdui-textfield-input" type="text" name="brief"/>
+			        <input class="mdui-textfield-input" type="text" name="brief" id="brief" />
 			    </div>
 			</div>
 
@@ -66,7 +58,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">时薪</label>
-			        <input class="mdui-textfield-input" type="number" name="wage" />
+			        <input class="mdui-textfield-input" type="number" name="wage" id="wage" />
 			    </div>
 			</div>
 
@@ -74,7 +66,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">要求</label>
-			        <input class="mdui-textfield-input" type="number" name="require" />
+			        <input class="mdui-textfield-input" type="number" name="require" id="require" />
 			    </div>
 			</div>
 
@@ -82,7 +74,7 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">联系方式</label>
-			        <input class="mdui-textfield-input" type="number" name="contact" />
+			        <input class="mdui-textfield-input" type="number" name="contact" id="contact" />
 			    </div>
 			</div>
 
@@ -90,18 +82,46 @@ if (!isset($_SESSION['user_id'])) {
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-textfield mdui-textfield-floating-label">
 			        <label class="mdui-textfield-label" style="margin-top:-20px;">联系人</label>
-			        <input class="mdui-textfield-input" type="number" name="linkman" />
+			        <input class="mdui-textfield-input" type="number" name="linkman" id="linkman" />
 			    </div>
 			</div>
 
 			<!-- 卡片的按钮 -->
 			<div class="mdui-card-actions">
-			    <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">发布</button>
+			    <button class="mdui-btn mdui-ripple mdui-float-right" type="submit" onclick="onSubmit">发布</button>
 			</div>
 
 		</form>
 
 	</div>
+
+	
+
+	<script type="text/javascript">
+
+		function onSubmit()
+		{
+			var title = $("#title").val();
+			if (title == "") {
+				mdui.alert("请输入标题");
+				return false;
+			}
+
+			var brief = $("#brief").val();
+			if (brief == "") {
+				mdui.alert("请输入简介");
+				return false;
+			}
+
+			var wage = $("#wage").val();
+			if (wage == "" || wage < 0 || wage > 1000) {
+				mdui.alert("时薪格式错误");
+				return false;
+			}
+
+			return true;
+		}
+	</script>
 </body>
 </HTML>
 

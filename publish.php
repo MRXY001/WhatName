@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
 			 echo time2Readability($create); ?></div>
 		</div>
 
-		<form action="publish_insert.php" onsubmit="return onSubmit()">
+		<form action="publish_insert.php" method="post" enctype="multipart/form-data" onsubmit="return onSubmit()">
 			<!-- 类型 -->
 			<div style="margin-left: 20px;">
 				<div class="mdui-chip">
@@ -73,9 +73,9 @@ if (!isset($_SESSION['user_id'])) {
 			<!-- 时薪 -->
 			<div class="mdui-card-content" style="margin-bottom: -25px;">
 			    <div class="mdui-chip">
-				    <span class="mdui-chip-title">图片</span>
+				    <span class="mdui-chip-title">照片</span>
 				</div>
-				<input type="file" name="photo1" id="phpto1">
+				<input type="file" name="photo1" id="phpto1" accept="image/*">
 			</div>
 
 			<!-- 联系方式 -->
